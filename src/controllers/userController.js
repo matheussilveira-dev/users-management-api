@@ -41,7 +41,7 @@ class userController{
 
             await userServices.update(id, req.body)
 
-            res.status(201).json({
+            res.status(200).json({
                 message: "Usuário atualizado com sucesso!"
             })
 
@@ -55,9 +55,9 @@ class userController{
 
         const {id} = req.params
         
-        const result = await userServices.deleteUser(id)
+        await userServices.deleteUser(id)
 
-        res.status(201).json({
+        res.status(200).json({
             message: "Usuário deletado com sucesso!"
         })
 

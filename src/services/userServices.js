@@ -27,7 +27,7 @@ class userServices{
 
     async update(id, data){
         const user = new User(data)
-        const userVerification = userRepository.getById(id)
+        const userVerification = await userRepository.getById(id)
 
         if(!userVerification){
             throw new Error("Não há nenhum usuário associado a esse ID!")
@@ -46,7 +46,7 @@ class userServices{
     }
 
     async deleteUser(id){
-        const userVerification = userRepository.getById(id)
+        const userVerification = await userRepository.getById(id)
         
         if(!userVerification){
             throw new Error("Não há nenhum usuário associado a esse ID!")
