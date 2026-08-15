@@ -1,4 +1,5 @@
 import pool from "../database/connection.js";
+import User from "../models/User.js";
 
 class userRepository {
 
@@ -7,9 +8,35 @@ class userRepository {
         return rows
     }
 
-    async getByID(id){
+    async getById(id){
         const [rows] = await pool.query("SELECT * FROM users WHERE id = ?", [id])
         return rows
+    }
+
+    async create(user){
+        const {
+            name,
+            email,
+            password
+        } = user
+
+        const [result] = await pool.query("INSERT INTO users(name, email, password) VALUES (?, ?, ?)", [name, email, password])
+        
+        return result.insertId
+    }
+
+    async update(id, user){
+        const {
+            name,
+            email,
+            password
+        } = user
+
+        const [result] = await pool.query("UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?", [name, email, password, id])
+
+        
+        return result
+
     }
 }
 
