@@ -27,12 +27,22 @@ class userServices{
 
     async update(id, data){
         const user = new User(data)
+        const userVerification = userRepository.getById(id)
 
-        if()
+        if(!userVerification){
+            throw new Error("Não há nenhum usuário associado a esse ID!")
+        }
+
+        if(!user.name){
+            throw new Error("Nome do usuário obrigatório!")
+        }
 
         if(!user.email.includes("@")){
             throw new Error("Email inválido!")
         }
+
+        return userRepository.update(id, user)
+
     }
 }
 

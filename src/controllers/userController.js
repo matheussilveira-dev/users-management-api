@@ -33,6 +33,21 @@ class userController{
             next(error)
         }
     }
+
+    async update(req, res, next){
+        try {
+            
+            const {id} = req.params
+
+            await userServices.update(id, req.body)
+
+            res.status(201).json({
+                message: "Usuário atualizado com sucesso!"
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new userController()
