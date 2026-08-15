@@ -18,7 +18,7 @@ for (const variable of requiredEnv) {
 }
 
 const env = {
-    port: process.env.PORT || 3306,
+    port: process.env.PORT || 3010,
 
     db: {
         host: process.env.DB_HOST,
@@ -27,3 +27,5 @@ const env = {
         database: process.env.DB_NAME,
     },
 }
+
+export default env
