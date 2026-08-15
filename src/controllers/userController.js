@@ -44,9 +44,27 @@ class userController{
             res.status(201).json({
                 message: "Usuário atualizado com sucesso!"
             })
+
         } catch (error) {
             next(error)
         }
+    }
+
+    async deleteUser(req, res, next){
+        try {
+
+        const {id} = req.params
+        
+        const result = await userServices.deleteUser(id)
+
+        res.status(201).json({
+            message: "Usuário deletado com sucesso!"
+        })
+
+        } catch (error) {
+            next(error)
+        }
+        
     }
 }
 

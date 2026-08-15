@@ -44,6 +44,16 @@ class userServices{
         return userRepository.update(id, user)
 
     }
+
+    async deleteUser(id){
+        const userVerification = userRepository.getById(id)
+        
+        if(!userVerification){
+            throw new Error("Não há nenhum usuário associado a esse ID!")
+        }
+
+        return userRepository.deleteUser(id)
+    }
 }
 
 export default new userServices()

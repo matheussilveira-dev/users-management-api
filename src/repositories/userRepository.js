@@ -38,6 +38,12 @@ class userRepository {
         return result
 
     }
+
+    async deleteUser(id){
+        const [result] = await pool.query("DELETE FROM users WHERE id = ?", [id])
+
+        return result
+    }
 }
 
 export default new userRepository()
